@@ -1,0 +1,113 @@
+# Author: Bálint Belinszki
+# Assignment 12
+# Exercise 7 (CashRegister class)
+
+from ass12_5 import RetailItem
+class CashRegister:
+    def __init__(self, item1, item2, item3, cost1, cost2, cost3):
+        self.item1 = item1
+        self.item2 = item2
+        self.item3 = item3
+        self.cost1 = cost1
+        self.cost2 = cost2
+        self.cost3 = cost3
+    def purchase_item(self):
+        return 1
+    def get_total(self, cost1, cost2, cost3):
+        self.cost1 = cost1
+        self.cost2 = cost2
+        self.cost3 = cost3
+    def show_items(self, cost1, cost2, cost3):
+        self.cost1 = cost1
+        self.cost2 = cost2
+        self.cost3 = cost3
+    def clear(self):
+        return 2
+    
+def main():
+    item1 = RetailItem('Jacket', 12, 59.95)
+    item2 = RetailItem('Designer jeans', 40, 34.95)
+    item3 = RetailItem('Shirt', 20, 24.95)
+    cost1 = item1.get_info()
+    cost2 = item2.get_info()
+    cost3 = item3.get_info()
+    itemlist = (item1.get_info(), item2.get_info(), item3.get_info())
+    task = CashRegister(item1, item2, item3, cost1, cost2, cost3)
+    menu = True
+    select = True
+    choose = []
+    while menu:
+        print('Menu')
+        print('-'*50)
+        print('1. Select an item to buy')
+        print('2. Get total')
+        print('3. Show bought items')
+        print('4. Clear cash register')
+        print('Press <Enter> to quit')
+        print('-'*50)
+        menu = input('What do you want to do? ')
+        print('-'*50)
+        if menu == '1':
+            task.purchase_item()
+            print('Enter the number of the item to buy:')
+            print('1: Jacket')
+            print('2: Pullover')
+            print('3: Trousers')
+            select = input('Enter a valid choice:')
+            if select == '1':
+                for i in range(0, 1):
+                    for x in range(0, 1):
+                        print(itemlist[i][x], end="\t")
+                    print("\n")
+                    choose.append(select)
+            elif select == '2':
+                for i in range(1, 2):
+                    for x in range(0, 3):
+                        print(itemlist[i][x], end="\t")
+                    print("\n")
+                    choose.append(select)
+            elif select == '3':
+                for i in range(2, 3):
+                    for x in range(0, 3):
+                        print(itemlist[i][x], end="\t")
+                    print("\n")
+                    choose.append(select)
+        elif menu == '2':
+            task.get_total(cost1, cost2, cost3)
+            if choose == ['1']:
+                print(cost1)
+            elif choose == ['2']:
+                print(cost2)
+            elif choose == ['3']:
+                print(cost3)
+            elif choose == ['1','2']:
+                print(cost1, cost2)
+            elif choose == ['1','3']:
+                print(cost1, cost3)
+            elif choose == ['2','3']:
+                print(cost2, cost3)
+            elif choose == ['1', '2', '3']:
+                print(cost1, cost2, cost3)
+        elif menu == '3':
+            task.show_items(cost1, cost2, cost3)
+            if choose == ['1']:
+                print(cost1)
+            elif choose == ['2']:
+                print(cost2)
+            elif choose == ['3']:
+                print(cost3)
+            elif choose == ['1','2']:
+                print(cost1, cost2)
+            elif choose == ['1','3']:
+                print(cost1, cost3)
+            elif choose == ['2','3']:
+                print(cost2, cost3)
+            elif choose == ['1', '2', '3']:
+                print(cost1, cost2, cost3)
+        elif menu == '4':
+            task.clear()
+            choose = []
+            print('CashRegister cleared')
+        elif menu != '':
+            print('Invalid entry!')
+main()
